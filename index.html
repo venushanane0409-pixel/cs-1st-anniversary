@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>CS 1st Anniversary Trip in DISNEY SEA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 黄金比デザインシステム */
+        :root {
+            /* 黄金比 φ = 1.618 */
+            --phi: 1.618;
+            
+            /* Spacing (rem) */
+            --spacing-0236: 0.236rem;
+            --spacing-0382: 0.382rem;
+            --spacing-0618: 0.618rem;
+            --spacing-1: 1rem;
+            --spacing-1618: 1.618rem;
+            --spacing-2618: 2.618rem;
+            --spacing-4236: 4.236rem;
+            --spacing-6854: 6.854rem;
+            
+            /* Font Size (rem) */
+            --fs-caption: 0.786rem;
+            --fs-body: 1rem;
+            --fs-lead: 1.272rem;
+            --fs-h3: 1.618rem;
+            --fs-h2: 2.058rem;
+            --fs-h1: 2.618rem;
+            --fs-display: 4.236rem;
+            
+            /* Line Height */
+            --lh-body: 1.618;
+            --lh-heading: 1.272;
+            --lh-display: 1.128;
+            
+            /* Letter Spacing */
+            --ls-large: -0.022em;
+            --ls-uppercase: 0.0618em;
+            
+            /* Radius */
+            --radius-sm: 0.618rem;
+            --radius-md: 1rem;
+            --radius-lg: 1.618rem;
+            
+            /* Colors */
+            --bg-gradient-top: #dbeefb;
+            --bg-gradient-mid: #eaf4fc;
+            --bg-gradient-bottom: #f7f3e9;
+            --ice-blue-light: #a9d3ef;
+            --ice-blue-dark: #cfe6f5;
+            --ink-dark: #13315c;
+            --ink-darker: #0d2b54;
+            --accent-blue: #2f6db5;
+            --gold: #c9a86a;
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --card-border: rgba(255, 255, 255, 0.9);
+            --card-shadow: 0 1.618rem 1.618rem rgba(31, 77, 138, 0.12);
+        }
+        
+        /* 基本スタイル */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: var(--fs-body);
+        }
+        
+        body {
+            font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+            font-weight: 500;
+            color: var(--ink-dark);
+            background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-mid), var(--bg-gradient-bottom));
+            min-height: 100vh;
+            line-height: var(--lh-body);
+            letter-spacing: 0;
+            overflow-x: hidden;
+        }
+        
+        /* セマンティック要素 */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', 'Shippori Mincho', 'Noto Serif JP', serif;
+            line-height: var(--lh-heading);
+            letter-spacing: var(--ls-large);
+            color: var(--ink-darker);
+        }
+        
+        h1 {
+            font-size: var(--fs-display);
+            line-height: var(--lh-display);
+        }
+        
+        h2 {
+            font-size: var(--fs-h2);
+        }
+        
+        h3 {
+            font-size: var(--fs-h3);
+        }
+        
+        p {
+            font-size: var(--fs-body);
+            margin-bottom: var(--spacing-1618);
+        }
+        
+        /* カードスタイル */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            padding: var(--spacing-2618);
+            margin-bottom: var(--spacing-2618);
+        }
+        
+        .container > h2 {
+            text-align: center;
+            color: var(--ink-darker);
+            margin-bottom: var(--spacing-2618);
+        }
+
+        .card > h2 {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: var(--spacing-1);
+            margin-bottom: var(--spacing-1618);
+            padding-bottom: var(--spacing-0618);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .day-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--fs-lead);
+            color: var(--accent-blue);
+            letter-spacing: var(--ls-large);
+        }
+
+        .photo-lead {
+            text-align: center;
+            color: var(--ink-dark);
+            margin-bottom: var(--spacing-1618);
+        }
+
+        /* タイムライン */
+        .timeline {
+            position: relative;
+            padding-left: var(--spacing-2618);
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: var(--spacing-1618);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--ice-blue-dark);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--spacing-2618);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: calc(-1 * var(--spacing-1618) - 10px);
+            top: var(--spacing-1618);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--ice-blue-light);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--ice-blue-dark);
+        }
+        
+        .timeline-time {
+            font-weight: 700;
+            font-size: var(--fs-lead);
+            color: var(--accent-blue);
+            margin-bottom: var(--spacing-0618);
+        }
+        
+        /* 写真スポット */
+        .photo-spots {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .photo-map {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+        }
+        
+        .photo-spot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: var(--fs-caption);
+            box-shadow: 0 0 0 3px white, 0 0 0 6px var(--accent-blue);
+        }
+        
+        /* ボタン */
+        .btn {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
+            padding: var(--spacing-0618) var(--spacing-1618);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--ink-darker);
+            transform: translateY(-2px);
+        }
+        
+        /* 装飾 - 雪 */
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: rgba(120, 170, 220, 0.45);
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+            font-size: 1em;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        /* 装飾 - きらめき */
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle 3s infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* アクセシビリティ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* セクション */
+        section {
+            padding: var(--spacing-4236) 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-1618);
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            text-align: center;
+            padding: var(--spacing-2618) 0 var(--spacing-1618);
+            position: relative;
+        }
+
+        .hero-image {
+            display: block;
+            width: 100%;
+            max-width: 880px;
+            height: auto;
+            margin: 0 auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+        }
+
+        .hero-date {
+            font-size: var(--fs-lead);
+            color: var(--ink-dark);
+            margin-top: var(--spacing-1618);
+            margin-bottom: 0;
+            letter-spacing: var(--ls-large);
+        }
+
+        /* スクリーンリーダー専用（視覚的には非表示） */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* スケジュールセクション */
+        .schedule-banner {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto var(--spacing-2618);
+            border-radius: var(--radius-lg);
+        }
+        
+        /* イクスピアリセクション */
+        .ikspiari-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2618);
+        }
+        
+        .ikspiari-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+        
+        .ikspiari-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .ikspiari-content {
+            padding: var(--spacing-1618);
+        }
+        
+        .ikspiari-title {
+            font-size: var(--fs-h3);
+            margin-bottom: var(--spacing-0618);
+            color: var(--accent-blue);
+        }
+        
+        /* インフォメーションセクション */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-2618);
+        }
+        
+        .info-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            padding: var(--spacing-1618);
+        }
+        
+        .info-card h3 {
+            margin-bottom: var(--spacing-1618);
+            color: var(--accent-blue);
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            margin-bottom: var(--spacing-0618);
+            position: relative;
+            padding-left: var(--spacing-1618);
+        }
+        
+        .info-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        .event-thumbs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-0618);
+            margin-top: var(--spacing-1618);
+        }
+
+        .event-thumbs img {
+            width: 100%;
+            height: 5rem;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            display: block;
+        }
+
+        .tip-image {
+            width: 100%;
+            height: 11rem;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-1);
+        }
+        
+        /* 部屋割りセクション */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2618);
+        }
+        
+        .room-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+        
+        .room-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .room-content {
+            padding: var(--spacing-1618);
+        }
+        
+        .room-title {
+            font-size: var(--fs-h3);
+            margin-bottom: var(--spacing-0618);
+            color: var(--accent-blue);
+        }
+        
+        .room-names {
+            font-size: var(--fs-body);
+        }
+        
+        /* ディズニーシーTipsセクション */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2618);
+        }
+        
+        .tip-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            padding: var(--spacing-1618);
+        }
+        
+        .tip-card h3 {
+            margin-bottom: var(--spacing-1618);
+            color: var(--accent-blue);
+        }
+        
+        /* フッター */
+        footer {
+            background: var(--ink-dark);
+            color: white;
+            padding: var(--spacing-4236) 0;
+            text-align: center;
+        }
+        
+        footer h2 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: var(--spacing-0618);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        footer img {
+            border-radius: var(--radius-md);
+        }
+        
+        footer img {
+            max-width: 300px;
+            margin-bottom: var(--spacing-1618);
+        }
+        
+        /* レスポンシブ（html font-sizeは16pxのまま＝本文は最小16pxを維持） */
+        @media (max-width: 640px) {
+            h1 { font-size: var(--fs-h2); }
+            h2 { font-size: var(--fs-h3); }
+
+            .hero {
+                padding: var(--spacing-1618) 0;
+            }
+
+            section {
+                padding: var(--spacing-2618) 0;
+            }
+
+            .container {
+                padding: 0 var(--spacing-1);
+            }
+
+            .card,
+            .info-card,
+            .tip-card {
+                padding: var(--spacing-1618);
+            }
+
+            /* 全グリッドを1カラムに */
+            .ikspiari-grid,
+            .info-grid,
+            .rooms-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 雪・きらめき装飾 -->
+    <div class="snow" id="snow"></div>
+    <div id="sparkles"></div>
+    
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="visually-hidden">CS DEPARTMENT 1st Anniversary Trip in DISNEY SEA — Jubilee Blue</h1>
+            <img src="assets/hero.jpg" alt="CS DEPARTMENT 1st Anniversary Trip in DISNEY SEA — Jubilee Blue" class="hero-image">
+            <p class="hero-date">CS部 1周年記念旅行　／　2026 6.25-26 (THU・FRI)</p>
+        </div>
+    </section>
+    
+    <!-- スケジュールセクション - DAY1 -->
+    <section>
+        <div class="container">
+            <img src="assets/banner-schedule.png" alt="Schedule" class="schedule-banner">
+            
+            <div class="card">
+                <h2>DAY1｜東京ディズニーシー<span class="day-date">6.25 (Thu)</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">8:00</div>
+                        <p>舞浜駅集合（電車組）</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">8:30</div>
+                        <p>ディズニーシー入口集合（バス組）／荷物は入口付近にあるロッカーに預けます！／遅刻参加はDiscordで連絡してね！</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">入園後</div>
+                        <p>❶ プロメテウス火山をバックに撮影 📸Photo Time!!</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">自由タイム</div>
+                        <p>アトラクションやグルメ・ショーを自由に楽しみましょう♪</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">12:00</div>
+                        <p>❷ エントランス（地球儀＆アーケード付近） 📸Photo Time!!</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">15:00</div>
+                        <p>❸ ファンタジースプリングス ホテル前で撮影 📸Photo Time!!</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">18:00</div>
+                        <p>❹ アラビアンコースト ジーニーの噴水前 📸Photo Time!!（or 閉園後）</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">宿泊</div>
+                        <p>東京ディズニーホテルに宿泊／素敵なホテルでゆっくり休んで思い出を語り合おう♪</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">※</div>
+                        <p>時間は変更になる場合があります！変更はDiscordで確認してください！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Photo Timeセクション -->
+    <section>
+        <div class="container">
+            <img src="assets/banner-phototime.png" alt="Photo Time" class="schedule-banner">
+            
+            <div class="card">
+                <h2>撮影スポット MAP</h2>
+                <p class="photo-lead">マップ上の番号がスケジュールの📸撮影ポイントです。</p>
+                <div class="photo-spots">
+                    <img src="assets/park-map.jpg" alt="パークマップ" class="photo-map">
+                    <div class="photo-spot" style="top: 30%; left: 20%;">❶</div>
+                    <div class="photo-spot" style="top: 40%; left: 50%;">❷</div>
+                    <div class="photo-spot" style="top: 60%; left: 70%;">❸</div>
+                    <div class="photo-spot" style="top: 70%; left: 40%;">❹</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- スケジュールセクション - DAY2 -->
+    <section>
+        <div class="container">
+            <div class="card">
+                <h2>DAY2｜フリータイム<span class="day-date">6.26 (Fri)</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">起床</div>
+                        <p>ランドホテルで朝食／ルームサービス利用の場合は前日に事前予約しておこう◎</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">12:00</div>
+                        <p>12時までにチェックアウト ランドホテル前で集合写真 📸Photo Time!!</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">解散後</div>
+                        <p>各自フリータイム</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- おすすめイクスピアリセクション -->
+    <section>
+        <div class="container">
+            <h2>おすすめ！イクスピアリ</h2>
+            <div class="ikspiari-grid">
+                <div class="ikspiari-card">
+                    <img src="assets/ikspiari-cinema.jpg" alt="シネマイクスピアリ" loading="lazy">
+                    <div class="ikspiari-content">
+                        <h3 class="ikspiari-title">シネマイクスピアリ（★映画館）</h3>
+                        <p>まるでハリウッドに来たかのよう！</p>
+                    </div>
+                </div>
+                <div class="ikspiari-card">
+                    <img src="assets/ikspiari-rainforest.jpg" alt="レインフォレストカフェ" loading="lazy">
+                    <div class="ikspiari-content">
+                        <h3 class="ikspiari-title">レインフォレストカフェ（★レストラン）</h3>
+                        <p>ジャングルをイメージした店内で巨大なタワー型の水槽もあります！テーマパークのような空間☆</p>
+                    </div>
+                </div>
+                <div class="ikspiari-card">
+                    <img src="assets/ikspiari-monsoon.jpg" alt="モンスーンカフェ" loading="lazy">
+                    <div class="ikspiari-content">
+                        <h3 class="ikspiari-title">モンスーンカフェ（★レストラン）</h3>
+                        <p>席数が多く、オリエンタルな雰囲気が東南アジアのリゾート風♪</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Informationセクション -->
+    <section>
+        <div class="container">
+            <img src="assets/banner-information.png" alt="Information" class="schedule-banner">
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>持ち物（ディズニーシー）</h3>
+                    <ul class="info-list">
+                        <li>スマートフォン</li>
+                        <li>モバイルバッテリー</li>
+                        <li>日焼け止め</li>
+                        <li>折り畳み傘</li>
+                        <li>暑さ対策</li>
+                        <li>除菌シート</li>
+                        <li>薄手の羽織り</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>ドレスコード</h3>
+                    <p>青または白を取り入れたコーデでご参加ください☆</p>
+                </div>
+                <div class="info-card">
+                    <h3>その他情報</h3>
+                    <ul class="info-list">
+                        <li><a href="#" style="color: var(--accent-blue);">ディズニーシーHP</a></li>
+                        <li><a href="#" style="color: var(--accent-blue);">モバイルオーダー</a></li>
+                        <li><a href="#" style="color: var(--accent-blue);">MAP</a></li>
+                        <li><a href="#" style="color: var(--accent-blue);">シーの情報まとめ</a></li>
+                        <li><a href="#" style="color: var(--accent-blue);">雨の日ディズニー</a></li>
+                        <li><a href="#" style="color: var(--accent-blue);">シー25周年メニュー</a></li>
+                        <li><a href="#" style="color: var(--accent-blue);">シー食べ歩きフード</a></li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>イベント</h3>
+                    <ul class="info-list">
+                        <li>スパークリング・ジュビリー・セレブレーション（11:30 / 14:00 / 16:00）</li>
+                        <li>スパークリング・ジュビリー・ナイト（20:55）</li>
+                        <li>ビリーヴ！シー・オブ・ドリームス（20:15）</li>
+                        <li>ダンス・ザ・グローブ！（13:25 / 15:10 / 17:30 / 19:15）</li>
+                        <li>ドリームス・テイク・フライト（11:00 / 12:25 / 13:50 / 17:20）</li>
+                    </ul>
+                    <div class="event-thumbs">
+                        <img src="assets/event-celebration.jpg" alt="パークのイベントの様子（昼）" loading="lazy">
+                        <img src="assets/event-believe.jpg" alt="パークの夜のショーの様子" loading="lazy">
+                        <img src="assets/event-boat.jpg" alt="水上ショーの様子" loading="lazy">
+                        <img src="assets/event-greeting.jpg" alt="キャラクターグリーティングの様子" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Room Assignmentsセクション -->
+    <section>
+        <div class="container">
+            <img src="assets/banner-rooms.png" alt="Room Assignments" class="schedule-banner">
+            
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <img src="assets/room-alice.jpg" alt="不思議の国のアリス" loading="lazy">
+                    <div class="room-content">
+                        <h3 class="room-title">不思議の国のアリス</h3>
+                        <p class="room-names">ゆうか／ゆの／やえこ／みゆう</p>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="assets/room-beauty.jpg" alt="美女と野獣" loading="lazy">
+                    <div class="room-content">
+                        <h3 class="room-title">美女と野獣</h3>
+                        <p class="room-names">みおな（子ども2名）／ゆきの（子ども1名）／える</p>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="assets/room-tinkerbell.jpg" alt="ティンカーベル" loading="lazy">
+                    <div class="room-content">
+                        <h3 class="room-title">ティンカーベル</h3>
+                        <p class="room-names">ふるはる（子ども1名）／ななこ（子ども1名）／ともえ／もえこ</p>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="assets/room-standard.jpg" alt="通常部屋" loading="lazy">
+                    <div class="room-content">
+                        <h3 class="room-title">通常部屋</h3>
+                        <p class="room-names">① みづき／みおこ／あんり／ふうか　／　② あかね／りく／りお／りな</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- DisneySea Tipsセクション -->
+    <section>
+        <div class="container">
+            <img src="assets/banner-tips.png" alt="DisneySea Tips" class="schedule-banner">
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>🎢 アトラクション重視派</h3>
+                    <p>ソアリン：ファンタスティック・フライト／アナとエルサのフローズンジャーニー／ラプンツェルのランタンフェスティバル／ピーターパンのネバーランドアドベンチャー／タワー・オブ・テラー／センター・オブ・ジ・アース</p>
+                    <p>→ 上記が定番！確実に乗りたい場合は「DPA」を早めに取得しよう◎</p>
+                    <p>※DPAは朝のうちに無くなることが多いので確実に見たい乗りたいものはスグとる！</p>
+                </div>
+                <div class="tip-card">
+                    <h3>📸 写真映え重視派</h3>
+                    <img src="assets/fountain-25th.jpg" alt="25周年ジュビリーブルー装飾のアクアスフィア" class="tip-image" loading="lazy">
+                    <p>25周年のジュビリーブルーの装飾と一緒に写真をたくさん取りましょう♪ 最近流行りの「カラーハンティング」で遊ぶのも◎ → 今日のテーマカラーを各自決めてパーク内でその写真を撮っていく</p>
+                </div>
+                <div class="tip-card">
+                    <h3>🍴 フード重視派</h3>
+                    <p>ギョウザドッグ／うきわまん／チュロス／スペシャルドリンク</p>
+                    <p>モバイルオーダーが使える店舗は事前に取るとスムーズです◎（昼間は激混み注意！！）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <h2>思い出写真を共有しよう！</h2>
+            <p>みんなで撮った写真をひとつのアルバムに♪</p>
+            <img src="assets/footer-app.jpg" alt="共有アプリ" loading="lazy">
+            <a href="#" class="btn">ここから共有する</a>
+        </div>
+    </footer>
+    
+    <script>
+        // 雪・きらめき生成
+        function createSnow() {
+            const snowContainer = document.getElementById('snow');
+            const sparkleContainer = document.getElementById('sparkles');
+            
+            // 雪
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+                snowflake.style.opacity = Math.random();
+                snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+                snowContainer.appendChild(snowflake);
+            }
+            
+            // きらめき
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                sparkleContainer.appendChild(sparkle);
+            }
+        }
+        
+        // 装飾（雪・きらめき）は reduced-motion 設定時は生成しない
+        document.addEventListener('DOMContentLoaded', function() {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!reduceMotion) {
+                createSnow();
+            }
+            // 画像の遅延読み込みは img の loading="lazy" 属性でブラウザ標準機能を利用
+        });
+    </script>
+</body>
+</html>
