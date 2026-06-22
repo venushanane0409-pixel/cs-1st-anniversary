@@ -235,83 +235,6 @@
             margin-bottom: 0;
         }
 
-        /* スケジュール（元デザイン画像） */
-        .sched-img {
-            display: block;
-            width: 100%;
-            max-width: 860px;
-            height: auto;
-            margin: 0 auto;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--card-shadow);
-        }
-
-        /* イベント（元デザインの紫グラデーションカードを再現） */
-        .events-card {
-            max-width: 460px;
-            margin: var(--spacing-2618) auto 0;
-            padding: var(--spacing-1618) var(--spacing-1);
-            border-radius: var(--radius-lg);
-            background: linear-gradient(165deg, #db6ff0 0%, #c182ef 26%, #9aa0f1 55%, #82c2f4 100%);
-            box-shadow: var(--card-shadow);
-        }
-
-        .events-head {
-            text-align: center;
-            font-family: 'Cormorant Garamond', 'Shippori Mincho', 'Noto Serif JP', serif;
-            font-size: var(--fs-h2);
-            font-weight: 700;
-            color: var(--ink-darker);
-            letter-spacing: 0.0618em;
-            margin-bottom: var(--spacing-1618);
-        }
-
-        .event-item {
-            text-align: center;
-            margin-bottom: var(--spacing-2618);
-        }
-
-        .event-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .event-item img {
-            width: 100%;
-            max-width: 360px;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
-            border-radius: var(--radius-md);
-            display: block;
-            margin: 0 auto var(--spacing-0618);
-            box-shadow: 0 0.236rem 0.618rem rgba(13, 43, 84, 0.25);
-        }
-
-        .event-name {
-            font-weight: 700;
-            color: var(--ink-darker);
-            line-height: 1.5;
-            margin-bottom: 0;
-        }
-
-        .event-time {
-            font-size: var(--fs-caption);
-            color: var(--ink-dark);
-            margin-bottom: 0;
-        }
-
-        .dpa {
-            display: inline-block;
-            background: #2f6db5;
-            color: #fff;
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            padding: 0.15em 0.55em;
-            border-radius: 999px;
-            margin-right: 0.4em;
-            vertical-align: middle;
-        }
-
         /* 写真スポット */
         .photo-spots {
             position: relative;
@@ -768,9 +691,50 @@
     <section>
         <div class="container">
             <img src="assets/banner-schedule.png" alt="Schedule" class="schedule-banner">
-
-            <img src="assets/sched-day1.jpg" class="sched-img"
-                 alt="DAY1（6/25 東京ディズニーシー）のスケジュール。8:00 舞浜駅集合（電車組）／8:30 ディズニーシー入口集合（バス組・荷物は入口付近のロッカーへ）／入園後 プロメテウス火山をバックに撮影／自由タイム／12:00 エントランス（地球儀＆アーケード付近）／15:00 ファンタジースプリングス ホテル前で撮影／18:00 アラビアンコースト ジーニーの噴水前／東京ディズニーホテルに宿泊。時間は変更の場合あり（Discordで確認）。">
+            
+            <div class="card">
+                <h2>DAY1｜東京ディズニーシー<span class="day-date">6.25 (Thu)</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">8:00</div>
+                        <p>舞浜駅集合（電車組）</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">8:30</div>
+                        <p class="ti-title">ディズニーシー入口集合（バス組）</p>
+                        <p class="note-strong">荷物は入口付近にあるロッカーに預けます！</p>
+                        <p class="note-small">遅刻参加はDiscordで連絡してね！</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">入園後</div>
+                        <p>❶ プロメテウス火山をバックに撮影 <span class="pt-badge">📸 Photo Time!!</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">自由タイム</div>
+                        <p>アトラクションやグルメ・ショーを自由に楽しみましょう♪</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">12:00</div>
+                        <p>❷ エントランス（地球儀＆アーケード付近） <span class="pt-badge">📸 Photo Time!!</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">15:00</div>
+                        <p>❸ ファンタジースプリングス ホテル前で撮影 <span class="pt-badge">📸 Photo Time!!</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">18:00</div>
+                        <p>❹ アラビアンコースト ジーニーの噴水前 <span class="pt-badge">📸 Photo Time!!</span><span class="note-small">（or 閉園後）</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">宿泊</div>
+                        <p>東京ディズニーホテルに宿泊／素敵なホテルでゆっくり休んで思い出を語り合おう♪</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">※</div>
+                        <p>時間は変更になる場合があります！変更はDiscordで確認してください！</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -796,8 +760,23 @@
     <!-- スケジュールセクション - DAY2 -->
     <section>
         <div class="container">
-            <img src="assets/sched-day2.jpg" class="sched-img"
-                 alt="DAY2（6/26 フリータイム）のスケジュール。起床：ランドホテルで朝食（ルームサービスは前日に事前予約）／12:00 までにチェックアウト、ランドホテル前で集合写真／解散後は各自フリータイム。">
+            <div class="card">
+                <h2>DAY2｜フリータイム<span class="day-date">6.26 (Fri)</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">起床</div>
+                        <p>ランドホテルで朝食／ルームサービス利用の場合は前日に事前予約しておこう◎</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">12:00</div>
+                        <p>12時までにチェックアウト ランドホテル前で集合写真 <span class="pt-badge">📸 Photo Time!!</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">解散後</div>
+                        <p>各自フリータイム</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -865,35 +844,21 @@
                         <li><a href="#" style="color: var(--accent-blue);">シー食べ歩きフード</a></li>
                     </ul>
                 </div>
-            </div>
-
-            <!-- イベント（元デザインの紫グラデーションカードを再現） -->
-            <div class="events-card">
-                <div class="events-head">イベント</div>
-                <div class="event-item">
-                    <img src="assets/event-celebration.jpg" alt="スパークリング・ジュビリー・セレブレーション" loading="lazy">
-                    <p class="event-name">スパークリング・ジュビリー・<wbr>セレブレーション</p>
-                    <p class="event-time">（11:30 / 14:00 / 16:00）</p>
-                </div>
-                <div class="event-item">
-                    <img src="assets/event-believe.jpg" alt="スパークリング・ジュビリー・ナイト" loading="lazy">
-                    <p class="event-name">スパークリング・ジュビリー・ナイト</p>
-                    <p class="event-time">（20:55）</p>
-                </div>
-                <div class="event-item">
-                    <img src="assets/event-boat.jpg" alt="ビリーヴ！〜シー・オブ・ドリームス〜" loading="lazy">
-                    <p class="event-name"><span class="dpa">DPA</span>ビリーヴ！<wbr>〜シー・オブ・ドリームス〜</p>
-                    <p class="event-time">（20:15）</p>
-                </div>
-                <div class="event-item">
-                    <img src="assets/event-greeting.jpg" alt="ダンス・ザ・グローブ！" loading="lazy">
-                    <p class="event-name"><span class="dpa">DPA</span>ダンス・ザ・グローブ！</p>
-                    <p class="event-time">（13:25 / 15:10 / 17:30 / 19:15）</p>
-                </div>
-                <div class="event-item">
-                    <img src="assets/event-dreams.jpg" alt="ドリームス・テイク・フライト" loading="lazy">
-                    <p class="event-name"><span class="dpa">DPA</span>ドリームス・テイク・フライト</p>
-                    <p class="event-time">（11:00 / 12:25 / 13:50 / 17:20）</p>
+                <div class="info-card">
+                    <h3>イベント</h3>
+                    <ul class="info-list">
+                        <li>スパークリング・ジュビリー・セレブレーション（11:30 / 14:00 / 16:00）</li>
+                        <li>スパークリング・ジュビリー・ナイト（20:55）</li>
+                        <li>ビリーヴ！シー・オブ・ドリームス（20:15）</li>
+                        <li>ダンス・ザ・グローブ！（13:25 / 15:10 / 17:30 / 19:15）</li>
+                        <li>ドリームス・テイク・フライト（11:00 / 12:25 / 13:50 / 17:20）</li>
+                    </ul>
+                    <div class="event-thumbs">
+                        <img src="assets/event-celebration.jpg" alt="パークのイベントの様子（昼）" loading="lazy">
+                        <img src="assets/event-believe.jpg" alt="パークの夜のショーの様子" loading="lazy">
+                        <img src="assets/event-boat.jpg" alt="水上ショーの様子" loading="lazy">
+                        <img src="assets/event-greeting.jpg" alt="キャラクターグリーティングの様子" loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
