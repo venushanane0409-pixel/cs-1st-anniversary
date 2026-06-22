@@ -291,6 +291,46 @@
             border-top: 1px solid rgba(201, 168, 106, 0.28);
         }
 
+        /* ===== 共通セクション見出し（目次と同じ上品スタイル） ===== */
+        .sec-head {
+            text-align: center;
+            margin-bottom: var(--spacing-2618);
+            line-height: 1.1;
+        }
+
+        .sec-en {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--fs-h1);
+            font-weight: 600;
+            font-style: italic;
+            color: var(--accent-blue);
+            letter-spacing: 0.02em;
+        }
+
+        .sec-ja {
+            display: inline-block;
+            font-size: var(--fs-caption);
+            color: var(--ink-dark);
+            letter-spacing: 0.28em;
+            padding-left: 0.28em;
+            margin-top: var(--spacing-0618);
+        }
+
+        /* 和文サブの左右に金色のあしらい */
+        .sec-ja::before,
+        .sec-ja::after {
+            content: '';
+            display: inline-block;
+            width: 1.618rem;
+            height: 1px;
+            background: var(--gold);
+            vertical-align: middle;
+            margin: 0 0.618rem;
+        }
+
+        .sec-ja::before { margin-left: 0; }
+
         /* タイムライン（線とドットを幅に依存せず常に揃える） */
         .timeline {
             position: relative;
@@ -938,7 +978,10 @@
     <!-- スケジュールセクション - DAY1 -->
     <section id="day1">
         <div class="container">
-            <img src="assets/banner-schedule.png" alt="Schedule" class="schedule-banner">
+            <div class="sec-head">
+                <span class="sec-en">Schedule</span>
+                <span class="sec-ja">スケジュール</span>
+            </div>
             
             <div class="card">
                 <h2>DAY1｜東京ディズニーシー<span class="day-date">6.25 (Thu)</span></h2>
@@ -989,7 +1032,10 @@
     <!-- Photo Timeセクション -->
     <section id="phototime">
         <div class="container">
-            <img src="assets/banner-phototime.png" alt="Photo Time" class="schedule-banner">
+            <div class="sec-head">
+                <span class="sec-en">Photo Time</span>
+                <span class="sec-ja">フォトタイム</span>
+            </div>
             
             <div class="card">
                 <h2>撮影スポット MAP</h2>
@@ -1031,7 +1077,10 @@
     <!-- おすすめイクスピアリセクション -->
     <section id="ikspiari">
         <div class="container">
-            <h2>おすすめ！イクスピアリ</h2>
+            <div class="sec-head">
+                <span class="sec-en">Ikspiari</span>
+                <span class="sec-ja">おすすめイクスピアリ</span>
+            </div>
             <div class="ikspiari-grid">
                 <div class="ikspiari-card">
                     <img src="assets/ikspiari-cinema.jpg" alt="シネマイクスピアリ" loading="lazy">
@@ -1061,7 +1110,10 @@
     <!-- Informationセクション -->
     <section>
         <div class="container">
-            <img src="assets/banner-information.png" alt="Information" class="schedule-banner">
+            <div class="sec-head">
+                <span class="sec-en">Information</span>
+                <span class="sec-ja">インフォメーション</span>
+            </div>
             
             <div class="info-grid">
                 <div class="info-card" id="items">
@@ -1115,7 +1167,10 @@
     <!-- Room Assignmentsセクション -->
     <section id="rooms">
         <div class="container">
-            <img src="assets/banner-rooms.png" alt="Room Assignments" class="schedule-banner">
+            <div class="sec-head">
+                <span class="sec-en">Room Assignments</span>
+                <span class="sec-ja">ホテルの部屋割り</span>
+            </div>
             
             <div class="rooms-grid">
                 <div class="room-card">
@@ -1153,7 +1208,10 @@
     <!-- DisneySea Tipsセクション -->
     <section id="tips">
         <div class="container">
-            <img src="assets/banner-tips.png" alt="DisneySea Tips" class="schedule-banner">
+            <div class="sec-head">
+                <span class="sec-en">DisneySea Tips</span>
+                <span class="sec-ja">タイプ別ディズニーの楽しみ方</span>
+            </div>
             
             <div class="tips-grid">
                 <div class="tip-card">
