@@ -356,7 +356,7 @@
         /* 横スクロールの舞台。タイトル中央が常に切れない高さを vw 連動で算出 */
         .hero-scroll {
             position: relative;
-            height: min(64vh, 62vw, 760px);   /* タイトルが余白付きで常に収まる */
+            height: min(64vh, 60vw, 760px);   /* タイトル(中心0.48・幅52%)が左右余白付きで収まる */
             overflow-x: auto;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
@@ -1046,7 +1046,7 @@
             if (!hs) return;
             const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             // タイトルの中心（画像幅の約46%）をビューポート中央に合わせる
-            const FOCAL = 0.45;
+            const FOCAL = 0.48;
             const center = () => {
                 const max = hs.scrollWidth - hs.clientWidth;
                 return Math.max(0, Math.min(max, FOCAL * hs.scrollWidth - hs.clientWidth / 2));
