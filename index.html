@@ -517,13 +517,26 @@
             color: rgba(255, 255, 255, 0.88);
         }
 
-        footer img {
+        .footer-share {
+            display: block;
+            max-width: 360px;
+            margin: 0 auto var(--spacing-1618);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-share:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer-share img {
+            display: block;
+            width: 100%;
             border-radius: var(--radius-md);
         }
-        
-        footer img {
-            max-width: 300px;
-            margin-bottom: var(--spacing-1618);
+
+        .btn-share {
+            font-size: var(--fs-lead);
+            padding: var(--spacing-1) var(--spacing-2618);
         }
         
         /* レスポンシブ（html font-sizeは16pxのまま＝本文は最小16pxを維持） */
@@ -555,6 +568,36 @@
             .rooms-grid,
             .tips-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* フッターの共有エリアはモバイルで画面いっぱいに */
+            footer .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            footer h2,
+            footer p {
+                padding-left: var(--spacing-1);
+                padding-right: var(--spacing-1);
+            }
+
+            .footer-share {
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .footer-share img {
+                border-radius: 0;
+            }
+
+            .btn-share {
+                display: block;
+                width: 100%;
+                border-radius: 0;
+                padding: var(--spacing-1618) var(--spacing-1);
+                font-size: var(--fs-h3);
             }
         }
     </style>
@@ -817,8 +860,10 @@
         <div class="container">
             <h2>思い出写真を共有しよう！</h2>
             <p>みんなで撮った写真をひとつのアルバムに♪</p>
-            <img src="assets/footer-app.jpg" alt="共有アプリ" loading="lazy">
-            <a href="#" class="btn">ここから共有する</a>
+            <a class="footer-share" href="https://drive.google.com/drive/folders/1HOWnRwk3cd0KwYXifUK5zKSPUsKzwq9C?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <img src="assets/footer-app.jpg" alt="思い出写真を共有する（Googleドライブの共有アルバムを開く）" loading="lazy">
+            </a>
+            <a href="https://drive.google.com/drive/folders/1HOWnRwk3cd0KwYXifUK5zKSPUsKzwq9C?usp=sharing" class="btn btn-share" target="_blank" rel="noopener noreferrer">ここから共有する</a>
         </div>
     </footer>
     
