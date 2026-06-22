@@ -346,21 +346,100 @@
             padding: 0 var(--spacing-1618);
         }
         
-        /* ヒーローセクション */
+        /* ヒーローセクション（拡大＋横スワイプ＋高級感） */
         .hero {
-            text-align: center;
-            padding: var(--spacing-2618) 0 var(--spacing-1618);
             position: relative;
+            padding: 0;
+            margin-bottom: var(--spacing-2618);
+        }
+
+        /* 横スクロールの舞台。タイトル中央が常に切れない高さを vw 連動で算出 */
+        .hero-scroll {
+            position: relative;
+            height: min(64vh, 62vw, 760px);   /* タイトルが余白付きで常に収まる */
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;            /* Firefox */
+            scroll-behavior: smooth;
+            background: var(--bg-gradient-top);
+            /* 下端をページに溶け込ませる柔らかいフェード（高級感・透過の雰囲気） */
+            -webkit-mask-image: linear-gradient(to bottom, #000 82%, rgba(0, 0, 0, 0) 100%);
+            mask-image: linear-gradient(to bottom, #000 82%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .hero-scroll::-webkit-scrollbar {     /* Chrome/Safari */
+            display: none;
         }
 
         .hero-image {
             display: block;
-            width: 100%;
-            max-width: 880px;
-            height: auto;
-            margin: 0 auto;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--card-shadow);
+            height: 100%;
+            width: auto;
+            max-width: none;
+            margin: 0 auto;            /* 画面より狭い時は中央寄せ */
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* 左右に淡いフェード＝高級感＆「まだ続く」サイン */
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: clamp(28px, 6vw, 90px);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-gradient-top), rgba(219, 238, 251, 0));
+        }
+
+        .hero::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-gradient-top), rgba(219, 238, 251, 0));
+        }
+
+        /* スワイプのヒント */
+        .hero-hint {
+            position: absolute;
+            left: 50%;
+            bottom: var(--spacing-1);
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-0382);
+            padding: var(--spacing-0236) var(--spacing-1);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            color: var(--ink-dark);
+            font-size: var(--fs-caption);
+            letter-spacing: 0.0618em;
+            box-shadow: 0 0.236rem 0.618rem rgba(31, 77, 138, 0.15);
+            transition: opacity 0.5s ease;
+        }
+
+        .hero-hint.is-hidden {
+            opacity: 0;
+        }
+
+        .hero-hint .chev {
+            animation: heroChev 1.6s ease-in-out infinite;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        @keyframes heroChev {
+            0%, 100% { transform: translateX(0); opacity: 0.5; }
+            50% { transform: translateX(3px); opacity: 1; }
         }
 
         /* スクリーンリーダー専用（視覚的には非表示） */
@@ -579,20 +658,6 @@
             h1 { font-size: var(--fs-h2); }
             h2 { font-size: var(--fs-h3); }
 
-            /* ヘッダー画像をモバイルで画面いっぱいに（全体が大きく映る） */
-            .hero {
-                padding: 0 0 var(--spacing-1618);
-            }
-
-            .hero .container {
-                padding: 0;
-            }
-
-            .hero-image {
-                max-width: 100%;
-                border-radius: 0;
-            }
-
             /* カード見出し: モバイルではブロック化して折り返す（flexの最小幅でカードがはみ出すのを防ぐ） */
             .card > h2 {
                 display: block;
@@ -679,11 +744,16 @@
     <div class="snow" id="snow"></div>
     <div id="sparkles"></div>
     
-    <!-- ヒーローセクション -->
+    <!-- ヒーローセクション（横スワイプで全景） -->
     <section class="hero">
-        <div class="container">
-            <h1 class="visually-hidden">CS DEPARTMENT 1st Anniversary Trip in DISNEY SEA — Jubilee Blue</h1>
-            <img src="assets/hero.jpg" alt="CS DEPARTMENT 1st Anniversary Trip in DISNEY SEA — Jubilee Blue" class="hero-image">
+        <h1 class="visually-hidden">CS DEPARTMENT 1st Anniversary Trip in DISNEY SEA — Jubilee Blue</h1>
+        <div class="hero-scroll" id="heroScroll">
+            <img src="assets/hero.jpg" alt="CS DEPARTMENT 1st Anniversary Trip in DISNEY SEA — Jubilee Blue（左右にスワイプすると全景が見られます）" class="hero-image">
+        </div>
+        <div class="hero-hint" id="heroHint">
+            <span class="chev">‹</span>
+            <span>スワイプで全景</span>
+            <span class="chev">›</span>
         </div>
     </section>
     
@@ -969,6 +1039,49 @@
             }
         }
         
+        // ヒーロー: 中央（タイトル）に寄せる。開いた瞬間に左→中央へパンして全景を予感させる
+        (function () {
+            const hs = document.getElementById('heroScroll');
+            const hint = document.getElementById('heroHint');
+            if (!hs) return;
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            // タイトルの中心（画像幅の約46%）をビューポート中央に合わせる
+            const FOCAL = 0.45;
+            const center = () => {
+                const max = hs.scrollWidth - hs.clientWidth;
+                return Math.max(0, Math.min(max, FOCAL * hs.scrollWidth - hs.clientWidth / 2));
+            };
+            const goCenter = (smooth) => hs.scrollTo({ left: center(), behavior: smooth ? 'smooth' : 'auto' });
+
+            const scrollable = () => hs.scrollWidth > hs.clientWidth + 2;
+            let guardUntil = 0;   // この時刻まではプログラム由来のスクロールでヒントを消さない
+            const intro = () => {
+                if (!scrollable()) { if (hint) hint.classList.add('is-hidden'); return; }
+                if (reduce) { goCenter(false); return; }
+                hs.scrollLeft = 0;                 // 左端（アクアスフィア）から
+                guardUntil = Date.now() + 2000;
+                setTimeout(() => goCenter(true), 550); // 中央のタイトルへゆっくりパン
+            };
+            if (document.readyState === 'complete') intro();
+            else window.addEventListener('load', intro);
+
+            // リサイズ時は中央維持
+            let rt;
+            window.addEventListener('resize', () => {
+                clearTimeout(rt);
+                guardUntil = Date.now() + 400;
+                rt = setTimeout(() => goCenter(false), 150);
+            });
+
+            // ユーザーが一度スワイプしたらヒントを隠す
+            let hid = false;
+            hs.addEventListener('scroll', () => {
+                if (hid || Date.now() < guardUntil) return;
+                hid = true;
+                if (hint) hint.classList.add('is-hidden');
+            }, { passive: true });
+        })();
+
         // 装飾（雪・きらめき）は reduced-motion 設定時は生成しない
         document.addEventListener('DOMContentLoaded', function() {
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
