@@ -151,38 +151,41 @@
             margin-bottom: var(--spacing-1618);
         }
 
-        /* タイムライン */
+        /* タイムライン（線とドットを幅に依存せず常に揃える） */
         .timeline {
             position: relative;
-            padding-left: var(--spacing-2618);
         }
-        
+
+        /* 縦線: 中心 x = 8px */
         .timeline::before {
             content: '';
             position: absolute;
-            left: var(--spacing-1618);
-            top: 0;
-            bottom: 0;
-            width: 3px;
+            left: 7px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
             background: var(--accent-blue);
+            border-radius: 1px;
         }
 
         .timeline-item {
             position: relative;
+            padding-left: 2.2rem;   /* テキストをドット/線の右へ */
             margin-bottom: var(--spacing-2618);
         }
 
+        /* ドット: left:0 + 幅16px → 中心 x = 8px（縦線とぴったり一致） */
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: calc(-1 * var(--spacing-1618) - 10px);
-            top: var(--spacing-1618);
-            width: 20px;
-            height: 20px;
+            left: 0;
+            top: 6px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: var(--ink-dark);
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px var(--accent-blue);
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 2px var(--accent-blue);
         }
         
         .timeline-time {
@@ -195,30 +198,34 @@
 
         /* フォトタイム バッジ（インパクト重視） */
         .pt-badge {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            gap: var(--spacing-0236);
             background: linear-gradient(135deg, var(--accent-blue), var(--ink-darker));
             color: #fff;
             font-weight: 700;
             font-size: var(--fs-body);
             letter-spacing: var(--ls-uppercase);
-            padding: var(--spacing-0236) var(--spacing-0618);
-            margin: var(--spacing-0236) 0 0 var(--spacing-0382);
+            padding: var(--spacing-0236) var(--spacing-1);
+            margin: var(--spacing-0618) 0 0;
             border-radius: 999px;
             box-shadow: 0 0.236rem 0.618rem rgba(31, 77, 138, 0.3);
-            white-space: nowrap;
-            vertical-align: middle;
         }
 
         /* スケジュール詳細の強弱 */
         .ti-title {
-            margin-bottom: var(--spacing-0382);
+            margin-bottom: var(--spacing-0618);
         }
 
         .note-strong {
-            display: inline-block;
+            display: block;
             font-weight: 700;
             color: var(--ink-darker);
-            background: linear-gradient(transparent 58%, rgba(201, 168, 106, 0.45) 58%);
+            background: rgba(201, 168, 106, 0.18);
+            border-left: 4px solid var(--gold);
+            padding: var(--spacing-0382) var(--spacing-0618);
+            border-radius: var(--radius-sm);
             margin-bottom: var(--spacing-0382);
         }
 
@@ -586,19 +593,31 @@
                 border-radius: 0;
             }
 
-            /* スケジュール: 余白を詰めて長文の折り返しを確実に */
-            .timeline {
-                padding-left: var(--spacing-1618);
+            /* カード見出し: モバイルではブロック化して折り返す（flexの最小幅でカードがはみ出すのを防ぐ） */
+            .card > h2 {
+                display: block;
+                overflow-wrap: anywhere;
             }
 
+            .day-date {
+                display: inline-block;
+                margin-left: var(--spacing-0618);
+            }
+
+            /* 長文の折り返しを確実に */
             .timeline-item p,
             .timeline-item .ti-title {
                 overflow-wrap: anywhere;
                 word-break: normal;
             }
 
-            .pt-badge {
-                white-space: normal;
+            /* 念のため: どの要素も画面幅を超えない */
+            .card,
+            .info-card,
+            .tip-card,
+            .timeline,
+            .timeline-item {
+                max-width: 100%;
             }
 
             section {
