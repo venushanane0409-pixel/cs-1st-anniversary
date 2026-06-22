@@ -462,6 +462,17 @@
             margin-bottom: 0;
         }
 
+        .inline-link {
+            color: var(--accent-blue);
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .inline-link:hover {
+            text-decoration: underline;
+        }
+
         /* 写真スポット */
         .photo-spots {
             position: relative;
@@ -1000,32 +1011,15 @@
                 <span class="toc-ja">目次</span>
             </div>
             <nav class="toc-card" aria-label="目次">
-                <div class="toc-group">
-                    <a class="toc-day" href="#day1">
-                        <span class="toc-num">1</span>
-                        <span class="toc-label">1日目</span>
-                    </a>
-                    <div class="toc-subs">
-                        <a class="toc-sub" href="#day1"><span class="toc-mark">a</span>スケジュール</a>
-                        <a class="toc-sub" href="#phototime"><span class="toc-mark">b</span>フォトタイム</a>
-                    </div>
-                </div>
-                <div class="toc-group">
-                    <a class="toc-day" href="#day2">
-                        <span class="toc-num">2</span>
-                        <span class="toc-label">2日目</span>
-                    </a>
-                    <div class="toc-subs">
-                        <a class="toc-sub" href="#day2"><span class="toc-mark">a</span>スケジュール</a>
-                        <a class="toc-sub" href="#ikspiari"><span class="toc-mark">b</span>イクスピアリおすすめ</a>
-                    </div>
-                </div>
+                <a class="toc-item" href="#day1"><span class="toc-num">1</span><span class="toc-label">1日目</span></a>
+                <a class="toc-item" href="#day2"><span class="toc-num">2</span><span class="toc-label">2日目</span></a>
                 <a class="toc-item" href="#items"><span class="toc-num">3</span><span class="toc-label">持ち物</span></a>
                 <a class="toc-item" href="#otherinfo"><span class="toc-num">4</span><span class="toc-label">その他情報</span></a>
                 <a class="toc-item" href="#events"><span class="toc-num">5</span><span class="toc-label">イベント</span></a>
                 <a class="toc-item" href="#rooms"><span class="toc-num">6</span><span class="toc-label">ホテルの部屋割り</span></a>
                 <a class="toc-item" href="#tips"><span class="toc-num">7</span><span class="toc-label">タイプ別ディズニーの楽しみ方</span></a>
-                <a class="toc-item" href="#photoshare"><span class="toc-num">8</span><span class="toc-label">写真共有</span></a>
+                <a class="toc-item" href="#ikspiari"><span class="toc-num">8</span><span class="toc-label">イクスピアリのおすすめ</span></a>
+                <a class="toc-item" href="#photoshare"><span class="toc-num">9</span><span class="toc-label">写真共有</span></a>
             </nav>
         </div>
     </section>
@@ -1053,7 +1047,7 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">入園後</div>
-                        <p>❶ プロメテウス火山をバックに撮影 <span class="pt-badge">📸 Photo Time!!</span></p>
+                        <p>❶ プロメテウス火山をバックに撮影 <span class="pt-badge">📸 集合写真タイム</span></p>
                         <img class="ti-photo" src="assets/day1-volcano.jpg" alt="プロメテウス火山" loading="lazy">
                     </div>
                     <div class="timeline-item">
@@ -1062,17 +1056,17 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">12:00</div>
-                        <p>❷ エントランス（地球儀＆アーケード付近） <span class="pt-badge">📸 Photo Time!!</span></p>
+                        <p>❷ エントランス（地球儀＆アーケード付近） <span class="pt-badge">📸 集合写真タイム</span></p>
                         <img class="ti-photo" src="assets/day1-globe.jpg" alt="25周年の地球儀モニュメント（メディテレーニアンハーバー）" loading="lazy">
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">15:00</div>
-                        <p>❸ ファンタジースプリングス ホテル前で撮影 <span class="pt-badge">📸 Photo Time!!</span></p>
+                        <p>❸ ファンタジースプリングス ホテル前で撮影 <span class="pt-badge">📸 集合写真タイム</span></p>
                         <img class="ti-photo" src="assets/day1-fantasysprings.jpg" alt="ファンタジースプリングス ホテル" loading="lazy">
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">18:00</div>
-                        <p>❹ アラビアンコースト ジーニーの噴水前 <span class="pt-badge">📸 Photo Time!!</span></p>
+                        <p>❹ アラビアンコースト ジーニーの噴水前 <span class="pt-badge">📸 集合写真タイム</span></p>
                         <img class="ti-photo" src="assets/day1-genie.jpg" alt="アラビアンコーストのジーニーの噴水" loading="lazy">
                     </div>
                     <div class="timeline-item">
@@ -1089,28 +1083,6 @@
         </div>
     </section>
     
-    <!-- Photo Timeセクション -->
-    <section id="phototime">
-        <div class="container">
-            <div class="sec-head">
-                <span class="sec-en">Photo Time</span>
-                <span class="sec-ja">フォトタイム</span>
-            </div>
-            
-            <div class="card">
-                <h2>撮影スポット MAP</h2>
-                <p class="photo-lead">マップ上の番号がスケジュールの📸撮影ポイントです。</p>
-                <div class="photo-spots">
-                    <img src="assets/park-map.jpg" alt="パークマップ" class="photo-map">
-                    <div class="photo-spot" style="top: 30%; left: 20%;">❶</div>
-                    <div class="photo-spot" style="top: 40%; left: 50%;">❷</div>
-                    <div class="photo-spot" style="top: 60%; left: 70%;">❸</div>
-                    <div class="photo-spot" style="top: 70%; left: 40%;">❹</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
     <!-- スケジュールセクション - DAY2 -->
     <section id="day2">
         <div class="container">
@@ -1119,48 +1091,22 @@
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-time">起床</div>
-                        <p>ランドホテルで朝食／ルームサービス利用の場合は前日に事前予約しておこう◎</p>
+                        <p>ランドホテルでの朝食は自由です。各自自由、またはルームサービスもおすすめです。</p>
+                        <p class="note-small">ルームサービスの朝食を利用する場合は、前日にホテルのルームサービス一覧から予約しておいてください。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">9:00</div>
+                        <p>ディズニーランドホテルの外観で集合写真 <span class="pt-badge">📸 集合写真タイム</span></p>
+                        <img class="ti-photo" src="assets/day1-hotel.jpg" alt="東京ディズニーランドホテル" loading="lazy">
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">12:00</div>
-                        <p>12時までにチェックアウト ランドホテル前で集合写真 <span class="pt-badge">📸 Photo Time!!</span></p>
+                        <p>12時までにチェックアウト</p>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">解散後</div>
-                        <p>各自フリータイム</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- おすすめイクスピアリセクション -->
-    <section id="ikspiari">
-        <div class="container">
-            <div class="sec-head">
-                <span class="sec-en">Ikspiari</span>
-                <span class="sec-ja">おすすめイクスピアリ</span>
-            </div>
-            <div class="ikspiari-grid">
-                <div class="ikspiari-card">
-                    <img src="assets/ikspiari-cinema.jpg" alt="シネマイクスピアリ" loading="lazy">
-                    <div class="ikspiari-content">
-                        <h3 class="ikspiari-title">シネマイクスピアリ（★映画館）</h3>
-                        <p>まるでハリウッドに来たかのよう！</p>
-                    </div>
-                </div>
-                <div class="ikspiari-card">
-                    <img src="assets/ikspiari-rainforest.jpg" alt="レインフォレストカフェ" loading="lazy">
-                    <div class="ikspiari-content">
-                        <h3 class="ikspiari-title">レインフォレストカフェ（★レストラン）</h3>
-                        <p>ジャングルをイメージした店内で巨大なタワー型の水槽もあります！テーマパークのような空間☆</p>
-                    </div>
-                </div>
-                <div class="ikspiari-card">
-                    <img src="assets/ikspiari-monsoon.jpg" alt="モンスーンカフェ" loading="lazy">
-                    <div class="ikspiari-content">
-                        <h3 class="ikspiari-title">モンスーンカフェ（★レストラン）</h3>
-                        <p>席数が多く、オリエンタルな雰囲気が東南アジアのリゾート風♪</p>
+                        <p>チェックアウト後は各自フリータイム</p>
+                        <p>イクスピアリでのお買い物やお食事もおすすめ♪ <a class="inline-link" href="#ikspiari">▶ おすすめイクスピアリ</a></p>
                     </div>
                 </div>
             </div>
@@ -1293,7 +1239,40 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- おすすめイクスピアリセクション -->
+    <section id="ikspiari">
+        <div class="container">
+            <div class="sec-head">
+                <span class="sec-en">Ikspiari</span>
+                <span class="sec-ja">おすすめイクスピアリ</span>
+            </div>
+            <div class="ikspiari-grid">
+                <div class="ikspiari-card">
+                    <img src="assets/ikspiari-cinema.jpg" alt="シネマイクスピアリ" loading="lazy">
+                    <div class="ikspiari-content">
+                        <h3 class="ikspiari-title">シネマイクスピアリ（★映画館）</h3>
+                        <p>まるでハリウッドに来たかのよう！</p>
+                    </div>
+                </div>
+                <div class="ikspiari-card">
+                    <img src="assets/ikspiari-rainforest.jpg" alt="レインフォレストカフェ" loading="lazy">
+                    <div class="ikspiari-content">
+                        <h3 class="ikspiari-title">レインフォレストカフェ（★レストラン）</h3>
+                        <p>ジャングルをイメージした店内で巨大なタワー型の水槽もあります！テーマパークのような空間☆</p>
+                    </div>
+                </div>
+                <div class="ikspiari-card">
+                    <img src="assets/ikspiari-monsoon.jpg" alt="モンスーンカフェ" loading="lazy">
+                    <div class="ikspiari-content">
+                        <h3 class="ikspiari-title">モンスーンカフェ（★レストラン）</h3>
+                        <p>席数が多く、オリエンタルな雰囲気が東南アジアのリゾート風♪</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- フッター -->
     <footer id="photoshare">
         <div class="container">
