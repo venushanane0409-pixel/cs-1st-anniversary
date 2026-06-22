@@ -72,6 +72,16 @@
         
         html {
             font-size: var(--fs-body);
+            scroll-behavior: smooth;
+        }
+
+        /* 目次から飛んだ時に上に少し余白 */
+        :target {
+            scroll-margin-top: var(--spacing-1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
         }
         
         body {
@@ -149,6 +159,136 @@
             text-align: center;
             color: var(--ink-dark);
             margin-bottom: var(--spacing-1618);
+        }
+
+        /* ===== 目次 ===== */
+        .toc-section {
+            padding-top: var(--spacing-1618);
+        }
+
+        .toc-head {
+            text-align: center;
+            margin-bottom: var(--spacing-1618);
+            line-height: 1.1;
+        }
+
+        .toc-en {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--fs-h1);
+            font-weight: 600;
+            font-style: italic;
+            color: var(--accent-blue);
+            letter-spacing: 0.02em;
+        }
+
+        .toc-ja {
+            display: inline-block;
+            font-size: var(--fs-caption);
+            color: var(--ink-dark);
+            letter-spacing: 0.3em;
+            padding-left: 0.3em;
+            margin-top: var(--spacing-0382);
+        }
+
+        .toc-card {
+            max-width: 540px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+            padding: var(--spacing-1618) var(--spacing-1);
+        }
+
+        .toc-group {
+            margin-bottom: var(--spacing-0618);
+        }
+
+        /* 共通の行 */
+        .toc-day,
+        .toc-item,
+        .toc-sub {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-1);
+            text-decoration: none;
+            color: var(--ink-darker);
+            border-radius: var(--radius-md);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .toc-day,
+        .toc-item {
+            padding: var(--spacing-0618) var(--spacing-0618);
+            font-size: var(--fs-lead);
+            font-weight: 700;
+        }
+
+        .toc-day:hover,
+        .toc-item:hover,
+        .toc-sub:hover {
+            background: rgba(47, 109, 181, 0.10);
+            transform: translateX(3px);
+        }
+
+        /* 番号サークル（タイムラインのドットと統一感） */
+        .toc-num {
+            flex: 0 0 auto;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--ink-darker));
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--fs-lead);
+            font-weight: 700;
+            box-shadow: 0 0.236rem 0.5rem rgba(31, 77, 138, 0.25);
+        }
+
+        /* 日別グループのサブ項目 */
+        .toc-subs {
+            margin: var(--spacing-0236) 0 var(--spacing-0618) 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-0236);
+            border-left: 2px solid rgba(201, 168, 106, 0.5);
+            padding-left: var(--spacing-1);
+        }
+
+        .toc-sub {
+            padding: var(--spacing-0382) var(--spacing-0618);
+            font-size: var(--fs-body);
+            font-weight: 500;
+            color: var(--ink-dark);
+        }
+
+        .toc-mark {
+            flex: 0 0 auto;
+            width: 1.382rem;
+            height: 1.382rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(201, 168, 106, 0.22);
+            color: var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: var(--fs-caption);
+        }
+
+        /* 項目間の金色の細線 */
+        .toc-item + .toc-item,
+        .toc-group + .toc-group,
+        .toc-group + .toc-item {
+            border-top: 1px solid rgba(201, 168, 106, 0.28);
         }
 
         /* タイムライン（線とドットを幅に依存せず常に揃える） */
@@ -757,8 +897,46 @@
         </div>
     </section>
     
+    <!-- 目次 -->
+    <section class="toc-section">
+        <div class="container">
+            <div class="toc-head">
+                <span class="toc-en">Contents</span>
+                <span class="toc-ja">目次</span>
+            </div>
+            <nav class="toc-card" aria-label="目次">
+                <div class="toc-group">
+                    <a class="toc-day" href="#day1">
+                        <span class="toc-num">1</span>
+                        <span class="toc-label">1日目</span>
+                    </a>
+                    <div class="toc-subs">
+                        <a class="toc-sub" href="#day1"><span class="toc-mark">a</span>スケジュール</a>
+                        <a class="toc-sub" href="#phototime"><span class="toc-mark">b</span>フォトタイム</a>
+                    </div>
+                </div>
+                <div class="toc-group">
+                    <a class="toc-day" href="#day2">
+                        <span class="toc-num">2</span>
+                        <span class="toc-label">2日目</span>
+                    </a>
+                    <div class="toc-subs">
+                        <a class="toc-sub" href="#day2"><span class="toc-mark">a</span>スケジュール</a>
+                        <a class="toc-sub" href="#ikspiari"><span class="toc-mark">b</span>イクスピアリおすすめ</a>
+                    </div>
+                </div>
+                <a class="toc-item" href="#items"><span class="toc-num">3</span><span class="toc-label">持ち物</span></a>
+                <a class="toc-item" href="#otherinfo"><span class="toc-num">4</span><span class="toc-label">その他情報</span></a>
+                <a class="toc-item" href="#events"><span class="toc-num">5</span><span class="toc-label">イベント</span></a>
+                <a class="toc-item" href="#rooms"><span class="toc-num">6</span><span class="toc-label">ホテルの部屋割り</span></a>
+                <a class="toc-item" href="#tips"><span class="toc-num">7</span><span class="toc-label">タイプ別ディズニーの楽しみ方</span></a>
+                <a class="toc-item" href="#photoshare"><span class="toc-num">8</span><span class="toc-label">写真共有</span></a>
+            </nav>
+        </div>
+    </section>
+
     <!-- スケジュールセクション - DAY1 -->
-    <section>
+    <section id="day1">
         <div class="container">
             <img src="assets/banner-schedule.png" alt="Schedule" class="schedule-banner">
             
@@ -809,7 +987,7 @@
     </section>
     
     <!-- Photo Timeセクション -->
-    <section>
+    <section id="phototime">
         <div class="container">
             <img src="assets/banner-phototime.png" alt="Photo Time" class="schedule-banner">
             
@@ -828,7 +1006,7 @@
     </section>
     
     <!-- スケジュールセクション - DAY2 -->
-    <section>
+    <section id="day2">
         <div class="container">
             <div class="card">
                 <h2>DAY2｜フリータイム<span class="day-date">6.26 (Fri)</span></h2>
@@ -851,7 +1029,7 @@
     </section>
     
     <!-- おすすめイクスピアリセクション -->
-    <section>
+    <section id="ikspiari">
         <div class="container">
             <h2>おすすめ！イクスピアリ</h2>
             <div class="ikspiari-grid">
@@ -886,7 +1064,7 @@
             <img src="assets/banner-information.png" alt="Information" class="schedule-banner">
             
             <div class="info-grid">
-                <div class="info-card">
+                <div class="info-card" id="items">
                     <h3>持ち物（ディズニーシー）</h3>
                     <ul class="info-list">
                         <li>スマートフォン</li>
@@ -902,7 +1080,7 @@
                     <h3>ドレスコード</h3>
                     <p>青または白を取り入れたコーデでご参加ください☆</p>
                 </div>
-                <div class="info-card">
+                <div class="info-card" id="otherinfo">
                     <h3>その他情報</h3>
                     <ul class="info-list">
                         <li><a href="#" style="color: var(--accent-blue);">ディズニーシーHP</a></li>
@@ -914,7 +1092,7 @@
                         <li><a href="#" style="color: var(--accent-blue);">シー食べ歩きフード</a></li>
                     </ul>
                 </div>
-                <div class="info-card">
+                <div class="info-card" id="events">
                     <h3>イベント</h3>
                     <ul class="info-list">
                         <li>スパークリング・ジュビリー・セレブレーション（11:30 / 14:00 / 16:00）</li>
@@ -935,7 +1113,7 @@
     </section>
     
     <!-- Room Assignmentsセクション -->
-    <section>
+    <section id="rooms">
         <div class="container">
             <img src="assets/banner-rooms.png" alt="Room Assignments" class="schedule-banner">
             
@@ -973,7 +1151,7 @@
     </section>
     
     <!-- DisneySea Tipsセクション -->
-    <section>
+    <section id="tips">
         <div class="container">
             <img src="assets/banner-tips.png" alt="DisneySea Tips" class="schedule-banner">
             
@@ -999,7 +1177,7 @@
     </section>
     
     <!-- フッター -->
-    <footer>
+    <footer id="photoshare">
         <div class="container">
             <h2>思い出写真を共有しよう！</h2>
             <p>みんなで撮った写真をひとつのアルバムに♪</p>
