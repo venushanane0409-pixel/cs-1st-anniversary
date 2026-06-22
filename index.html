@@ -479,7 +479,10 @@
             margin: var(--spacing-2618) auto 0;
             padding: var(--spacing-1618) var(--spacing-1);
             border-radius: var(--radius-lg);
-            background: linear-gradient(165deg, #db6ff0 0%, #c182ef 26%, #9aa0f1 55%, #82c2f4 100%);
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
             box-shadow: var(--card-shadow);
         }
 
@@ -963,20 +966,23 @@
         
         /* フッター */
         footer {
+            position: relative;
+            z-index: 2;                 /* 雪・きらめきを背面へ */
             background: var(--ink-dark);
             color: white;
             padding: var(--spacing-4236) 0;
             text-align: center;
         }
-        
-        footer h2 {
-            color: white;
+
+        /* .container > h2 に詳細度で勝たせて確実に白く */
+        footer .container h2 {
+            color: #ffffff;
             font-weight: 600;
             margin-bottom: var(--spacing-0618);
         }
 
         footer p {
-            color: rgba(255, 255, 255, 0.88);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .footer-share {
@@ -996,9 +1002,47 @@
             border-radius: var(--radius-md);
         }
 
+        /* 共有ボタン（立体感・高級感のあるゴールドのピル） */
         .btn-share {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+            margin-top: var(--spacing-0618);
+            font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
             font-size: var(--fs-lead);
-            padding: var(--spacing-1) var(--spacing-2618);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--ink-darker);
+            background: linear-gradient(180deg, #f3e3b4 0%, #ddc183 42%, #c7a35c 100%);
+            padding: var(--spacing-0618) var(--spacing-2618);
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow:
+                0 0.618rem 1.1rem rgba(0, 0, 0, 0.32),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7),
+                inset 0 -2px 4px rgba(140, 110, 50, 0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .btn-share::before {
+            content: '🎟';
+            font-size: 0.95em;
+        }
+
+        .btn-share:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(180deg, #f7e9c2 0%, #e3c98c 42%, #cda864 100%);
+            box-shadow:
+                0 0.9rem 1.6rem rgba(0, 0, 0, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.75),
+                inset 0 -2px 4px rgba(140, 110, 50, 0.35);
+        }
+
+        .btn-share:active {
+            transform: translateY(0);
+            box-shadow:
+                0 0.25rem 0.5rem rgba(0, 0, 0, 0.34),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55);
         }
         
         /* レスポンシブ（html font-sizeは16pxのまま＝本文は最小16pxを維持） */
@@ -1075,14 +1119,6 @@
 
             .footer-share img {
                 border-radius: 0;
-            }
-
-            .btn-share {
-                display: block;
-                width: 100%;
-                border-radius: 0;
-                padding: var(--spacing-1618) var(--spacing-1);
-                font-size: var(--fs-h3);
             }
         }
     </style>
@@ -1346,7 +1382,14 @@
             <div class="tips-grid">
                 <div class="tip-card">
                     <h3>🎢 アトラクション重視派</h3>
-                    <p>ソアリン：ファンタスティック・フライト／アナとエルサのフローズンジャーニー／ラプンツェルのランタンフェスティバル／ピーターパンのネバーランドアドベンチャー／タワー・オブ・テラー／センター・オブ・ジ・アース</p>
+                    <ul class="info-list">
+                        <li>ソアリン：ファンタスティック・フライト</li>
+                        <li>アナとエルサのフローズンジャーニー</li>
+                        <li>ラプンツェルのランタンフェスティバル</li>
+                        <li>ピーターパンのネバーランドアドベンチャー</li>
+                        <li>タワー・オブ・テラー</li>
+                        <li>センター・オブ・ジ・アース</li>
+                    </ul>
                     <p>→ 上記が定番！確実に乗りたい場合は「DPA」を早めに取得しよう◎</p>
                     <p>※DPAは朝のうちに無くなることが多いので確実に見たい乗りたいものはスグとる！</p>
                 </div>
@@ -1357,7 +1400,12 @@
                 </div>
                 <div class="tip-card">
                     <h3>🍴 フード重視派</h3>
-                    <p>ギョウザドッグ／うきわまん／チュロス／スペシャルドリンク</p>
+                    <ul class="info-list">
+                        <li>ギョウザドッグ</li>
+                        <li>うきわまん</li>
+                        <li>チュロス</li>
+                        <li>スペシャルドリンク</li>
+                    </ul>
                     <p>モバイルオーダーが使える店舗は事前に取るとスムーズです◎（昼間は激混み注意！！）</p>
                 </div>
             </div>
