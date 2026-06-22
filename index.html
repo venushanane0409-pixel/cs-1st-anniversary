@@ -163,15 +163,15 @@
             left: var(--spacing-1618);
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: var(--ice-blue-dark);
+            width: 3px;
+            background: var(--accent-blue);
         }
-        
+
         .timeline-item {
             position: relative;
             margin-bottom: var(--spacing-2618);
         }
-        
+
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -180,18 +180,54 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: var(--ice-blue-light);
+            background: var(--ink-dark);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px var(--ice-blue-dark);
+            box-shadow: 0 0 0 3px var(--accent-blue);
         }
         
         .timeline-time {
             font-weight: 700;
-            font-size: var(--fs-lead);
-            color: var(--accent-blue);
+            font-size: var(--fs-h3);
+            color: var(--ink-darker);
             margin-bottom: var(--spacing-0618);
+            letter-spacing: var(--ls-large);
         }
-        
+
+        /* フォトタイム バッジ（インパクト重視） */
+        .pt-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue), var(--ink-darker));
+            color: #fff;
+            font-weight: 700;
+            font-size: var(--fs-body);
+            letter-spacing: var(--ls-uppercase);
+            padding: var(--spacing-0236) var(--spacing-0618);
+            margin: var(--spacing-0236) 0 0 var(--spacing-0382);
+            border-radius: 999px;
+            box-shadow: 0 0.236rem 0.618rem rgba(31, 77, 138, 0.3);
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        /* スケジュール詳細の強弱 */
+        .ti-title {
+            margin-bottom: var(--spacing-0382);
+        }
+
+        .note-strong {
+            display: inline-block;
+            font-weight: 700;
+            color: var(--ink-darker);
+            background: linear-gradient(transparent 58%, rgba(201, 168, 106, 0.45) 58%);
+            margin-bottom: var(--spacing-0382);
+        }
+
+        .note-small {
+            font-size: var(--fs-caption);
+            color: rgba(19, 49, 92, 0.55);
+            margin-bottom: 0;
+        }
+
         /* 写真スポット */
         .photo-spots {
             position: relative;
@@ -318,14 +354,6 @@
             margin: 0 auto;
             border-radius: var(--radius-lg);
             box-shadow: var(--card-shadow);
-        }
-
-        .hero-date {
-            font-size: var(--fs-lead);
-            color: var(--ink-dark);
-            margin-top: var(--spacing-1618);
-            margin-bottom: 0;
-            letter-spacing: var(--ls-large);
         }
 
         /* スクリーンリーダー専用（視覚的には非表示） */
@@ -544,8 +572,33 @@
             h1 { font-size: var(--fs-h2); }
             h2 { font-size: var(--fs-h3); }
 
+            /* ヘッダー画像をモバイルで画面いっぱいに（全体が大きく映る） */
             .hero {
-                padding: var(--spacing-1618) 0;
+                padding: 0 0 var(--spacing-1618);
+            }
+
+            .hero .container {
+                padding: 0;
+            }
+
+            .hero-image {
+                max-width: 100%;
+                border-radius: 0;
+            }
+
+            /* スケジュール: 余白を詰めて長文の折り返しを確実に */
+            .timeline {
+                padding-left: var(--spacing-1618);
+            }
+
+            .timeline-item p,
+            .timeline-item .ti-title {
+                overflow-wrap: anywhere;
+                word-break: normal;
+            }
+
+            .pt-badge {
+                white-space: normal;
             }
 
             section {
@@ -612,7 +665,6 @@
         <div class="container">
             <h1 class="visually-hidden">CS DEPARTMENT 1st Anniversary Trip in DISNEY SEA — Jubilee Blue</h1>
             <img src="assets/hero.jpg" alt="CS DEPARTMENT 1st Anniversary Trip in DISNEY SEA — Jubilee Blue" class="hero-image">
-            <p class="hero-date">CS部 1周年記念旅行　／　2026 6.25-26 (THU・FRI)</p>
         </div>
     </section>
     
@@ -630,11 +682,13 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">8:30</div>
-                        <p>ディズニーシー入口集合（バス組）／荷物は入口付近にあるロッカーに預けます！／遅刻参加はDiscordで連絡してね！</p>
+                        <p class="ti-title">ディズニーシー入口集合（バス組）</p>
+                        <p class="note-strong">荷物は入口付近にあるロッカーに預けます！</p>
+                        <p class="note-small">遅刻参加はDiscordで連絡してね！</p>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">入園後</div>
-                        <p>❶ プロメテウス火山をバックに撮影 📸Photo Time!!</p>
+                        <p>❶ プロメテウス火山をバックに撮影 <span class="pt-badge">📸 Photo Time!!</span></p>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">自由タイム</div>
@@ -642,15 +696,15 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">12:00</div>
-                        <p>❷ エントランス（地球儀＆アーケード付近） 📸Photo Time!!</p>
+                        <p>❷ エントランス（地球儀＆アーケード付近） <span class="pt-badge">📸 Photo Time!!</span></p>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">15:00</div>
-                        <p>❸ ファンタジースプリングス ホテル前で撮影 📸Photo Time!!</p>
+                        <p>❸ ファンタジースプリングス ホテル前で撮影 <span class="pt-badge">📸 Photo Time!!</span></p>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">18:00</div>
-                        <p>❹ アラビアンコースト ジーニーの噴水前 📸Photo Time!!（or 閉園後）</p>
+                        <p>❹ アラビアンコースト ジーニーの噴水前 <span class="pt-badge">📸 Photo Time!!</span><span class="note-small">（or 閉園後）</span></p>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">宿泊</div>
@@ -696,7 +750,7 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">12:00</div>
-                        <p>12時までにチェックアウト ランドホテル前で集合写真 📸Photo Time!!</p>
+                        <p>12時までにチェックアウト ランドホテル前で集合写真 <span class="pt-badge">📸 Photo Time!!</span></p>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">解散後</div>
