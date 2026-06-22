@@ -161,6 +161,42 @@
             margin-bottom: var(--spacing-1618);
         }
 
+        /* ===== アプリアイコン リンク ===== */
+        .app-link-section {
+            text-align: center;
+            padding-top: var(--spacing-2618);
+            padding-bottom: 0;
+        }
+
+        .app-icon-link {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-0618);
+            text-decoration: none;
+        }
+
+        .app-icon {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 1.236rem;       /* iOS風の角丸 */
+            display: block;
+            box-shadow: 0 0.618rem 1.236rem rgba(31, 77, 138, 0.28);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .app-icon-link:hover .app-icon,
+        .app-icon-link:focus-visible .app-icon {
+            transform: translateY(-3px);
+            box-shadow: 0 0.9rem 1.6rem rgba(31, 77, 138, 0.34);
+        }
+
+        .app-icon-label {
+            font-size: var(--fs-caption);
+            color: var(--ink-dark);
+            letter-spacing: 0.06em;
+        }
+
         /* ===== 目次 ===== */
         .toc-section {
             padding-top: var(--spacing-1618);
@@ -937,6 +973,14 @@
         </div>
     </section>
     
+    <!-- ディズニーリゾート・アプリへのリンク -->
+    <section class="app-link-section">
+        <a class="app-icon-link" href="https://apps.apple.com/jp/app/tokyo-disney-resort-app/id1313147771" target="_blank" rel="noopener noreferrer">
+            <img src="assets/disney-app.png" alt="東京ディズニーリゾート・アプリを開く" class="app-icon">
+            <span class="app-icon-label">東京ディズニーリゾート・アプリ</span>
+        </a>
+    </section>
+
     <!-- 目次 -->
     <section class="toc-section">
         <div class="container">
