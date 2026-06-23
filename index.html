@@ -1263,6 +1263,43 @@
             display: block;
         }
 
+        /* 楽しみ方11ヶ条インフォグラフィック（ヘッダー直下） */
+        .tips-feature {
+            text-align: center;
+        }
+
+        .tips-feature img {
+            width: 100%;
+            max-width: 38.2rem;
+            height: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* お子さまタグ（やわらかい表現） */
+        .child-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.28em;
+            margin: 0 0.15em;
+            padding: 0.08em 0.6em 0.12em;
+            background: linear-gradient(135deg, rgba(201, 168, 106, 0.18), rgba(169, 211, 239, 0.22));
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 999px;
+            font-size: var(--fs-caption);
+            color: var(--ink-dark);
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        .child-tag svg {
+            width: 1em;
+            height: 1em;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+
         .ul-card-title {
             font-size: var(--fs-body);
             font-weight: 700;
@@ -1309,6 +1346,13 @@
         </div>
     </section>
     
+    <!-- 駒居さん流 ディズニーシーの楽しみ方11ヶ条 -->
+    <section class="tips-feature">
+        <div class="container">
+            <img src="assets/disney-tips-11.png" alt="駒居さん流 ディズニーシーの楽しみ方 11ヶ条" loading="lazy">
+        </div>
+    </section>
+
     <!-- ディズニーリゾート・アプリへのリンク -->
     <section class="app-link-section">
         <a class="app-icon-link" href="https://apps.apple.com/jp/app/tokyo-disney-resort-app/id1313147771" target="_blank" rel="noopener noreferrer">
@@ -1387,7 +1431,7 @@
                         <div class="timeline-time">21:00</div>
                         <p class="ti-title">閉園</p>
                         <p>東京ディズニーランドホテルに移動</p>
-                        <img class="ti-photo" src="assets/day1-hotel.jpg" alt="東京ディズニーランドホテル" loading="lazy">
+                        <img class="ti-photo" src="assets/hotel-night.png" alt="東京ディズニーランドホテル（夜）" loading="lazy">
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">宿泊</div>
@@ -1553,35 +1597,35 @@
                     <div class="room-content">
                         <h3 class="room-title">不思議の国のアリス</h3>
                         <p class="room-names">みづき／みおこ／あんり</p>
-                        <p class="room-sub">きすけ（みおなさんのお子様）<br>※当日はみおなさんのいるお部屋へ移動</p>
+                        <p class="room-sub"><span class="child-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="6"></circle><path d="M9.5 9.5h.01"></path><path d="M14.5 9.5h.01"></path><path d="M9.5 13a3 3 0 0 0 5 0"></path></svg>きすけ</span>（みおなさんのお子さま）<br>※当日はみおなさんのいるお部屋へ移動</p>
                     </div>
                 </div>
                 <div class="room-card">
                     <img src="assets/room-beauty.jpg" alt="スタンダードルーム" loading="lazy">
                     <div class="room-content">
                         <h3 class="room-title">スタンダード①</h3>
-                        <p class="room-names">あかね／りく／みおな（子：すい）／ふうか</p>
+                        <p class="room-names">あかね／りく／みおな<span class="child-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="6"></circle><path d="M9.5 9.5h.01"></path><path d="M14.5 9.5h.01"></path><path d="M9.5 13a3 3 0 0 0 5 0"></path></svg>すい</span>／ふうか</p>
                     </div>
                 </div>
                 <div class="room-card">
                     <img src="assets/room-beauty.jpg" alt="スタンダードルーム" loading="lazy">
                     <div class="room-content">
                         <h3 class="room-title">スタンダード②</h3>
-                        <p class="room-names">ゆうか／ゆの／ななこ（子：えま）／もえこ</p>
+                        <p class="room-names">ゆうか／ゆの／ななこ<span class="child-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="6"></circle><path d="M9.5 9.5h.01"></path><path d="M14.5 9.5h.01"></path><path d="M9.5 13a3 3 0 0 0 5 0"></path></svg>えま</span>／もえこ</p>
                     </div>
                 </div>
                 <div class="room-card">
                     <img src="assets/room-tinkerbell.jpg" alt="ティンカーベル" loading="lazy">
                     <div class="room-content">
                         <h3 class="room-title">ティンカーベル</h3>
-                        <p class="room-names">りお／ともえ／はるか／ふるはる（子：いおり）</p>
+                        <p class="room-names">りお／ともえ／はるか／ふるはる<span class="child-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="6"></circle><path d="M9.5 9.5h.01"></path><path d="M14.5 9.5h.01"></path><path d="M9.5 13a3 3 0 0 0 5 0"></path></svg>いおり</span></p>
                     </div>
                 </div>
                 <div class="room-card">
                     <img src="assets/room-standard.jpg" alt="美女と野獣" loading="lazy">
                     <div class="room-content">
                         <h3 class="room-title">美女と野獣</h3>
-                        <p class="room-names">あゆみ（子：ゆうき）／りな／やえこ／みゆう</p>
+                        <p class="room-names">あゆみ<span class="child-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="6"></circle><path d="M9.5 9.5h.01"></path><path d="M14.5 9.5h.01"></path><path d="M9.5 13a3 3 0 0 0 5 0"></path></svg>ゆうき</span>／りな／やえこ／みゆう</p>
                     </div>
                 </div>
             </div>
