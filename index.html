@@ -942,6 +942,24 @@
         .room-names {
             font-size: var(--fs-body);
         }
+
+        .room-sub {
+            margin-top: var(--spacing-0618);
+            padding-top: var(--spacing-0618);
+            border-top: 1px dashed rgba(47, 109, 181, 0.25);
+            font-size: var(--fs-caption);
+            line-height: var(--lh-heading);
+            color: var(--accent-blue);
+        }
+
+        .rooms-free {
+            margin-top: var(--spacing-2618);
+            text-align: center;
+            font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+            font-size: var(--fs-lead);
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
         
         /* ディズニーシーTipsセクション */
         .tips-grid {
@@ -1004,45 +1022,49 @@
 
         /* 共有ボタン（立体感・高級感のあるゴールドのピル） */
         .btn-share {
+            position: relative;
             display: inline-flex;
             align-items: center;
-            gap: 0.5em;
-            margin-top: var(--spacing-0618);
+            justify-content: center;
+            margin-top: var(--spacing-1);
             font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
             font-size: var(--fs-lead);
             font-weight: 700;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.12em;
             color: var(--ink-darker);
-            background: linear-gradient(180deg, #f3e3b4 0%, #ddc183 42%, #c7a35c 100%);
-            padding: var(--spacing-0618) var(--spacing-2618);
+            background: linear-gradient(177deg, #fdf4d6 0%, #f0d79e 32%, #d8b76e 64%, #c49f55 100%);
+            padding: var(--spacing-1) var(--spacing-2618);
             border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.55);
             box-shadow:
-                0 0.618rem 1.1rem rgba(0, 0, 0, 0.32),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7),
-                inset 0 -2px 4px rgba(140, 110, 50, 0.35);
-            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+                0 1.618rem 2.618rem rgba(150, 110, 40, 0.32),
+                0 0.382rem 0.9rem rgba(0, 0, 0, 0.22),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -0.22rem 0.5rem rgba(140, 110, 50, 0.4);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
         }
 
         .btn-share::before {
-            content: '🎟';
-            font-size: 0.95em;
+            content: none;
         }
 
-        .btn-share:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(180deg, #f7e9c2 0%, #e3c98c 42%, #cda864 100%);
+        .btn-share:hover,
+        .btn-share:focus-visible {
+            transform: translateY(-4px);
+            background: linear-gradient(177deg, #fff7e0 0%, #f5dfaa 32%, #e0c178 64%, #cba861 100%);
             box-shadow:
-                0 0.9rem 1.6rem rgba(0, 0, 0, 0.38),
-                inset 0 1px 0 rgba(255, 255, 255, 0.75),
-                inset 0 -2px 4px rgba(140, 110, 50, 0.35);
+                0 2.058rem 3.2rem rgba(150, 110, 40, 0.42),
+                0 0.618rem 1.2rem rgba(0, 0, 0, 0.26),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+                inset 0 -0.22rem 0.5rem rgba(140, 110, 50, 0.4);
         }
 
         .btn-share:active {
-            transform: translateY(0);
+            transform: translateY(1px);
             box-shadow:
-                0 0.25rem 0.5rem rgba(0, 0, 0, 0.34),
-                inset 0 1px 0 rgba(255, 255, 255, 0.55);
+                0 0.382rem 0.7rem rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 0.2rem 0.5rem rgba(140, 110, 50, 0.45);
         }
         
         /* レスポンシブ（html font-sizeは16pxのまま＝本文は最小16pxを維持） */
@@ -1231,8 +1253,14 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto var(--spacing-0618);
-            font-size: var(--fs-h2);
+            color: var(--accent-blue);
             box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7);
+        }
+
+        .ul-svg {
+            width: 1.9rem;
+            height: 1.9rem;
+            display: block;
         }
 
         .ul-card-title {
@@ -1247,21 +1275,6 @@
             font-size: var(--fs-caption);
             color: var(--accent-blue);
             letter-spacing: 0.04em;
-        }
-
-        .ul-instagram-badge {
-            position: absolute;
-            top: var(--spacing-0618);
-            right: var(--spacing-0618);
-            width: 1.618rem;
-            height: 1.618rem;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: var(--fs-caption);
-            box-shadow: 0 0.236rem 0.382rem rgba(31, 77, 138, 0.18);
         }
 
         @media (max-width: 640px) {
@@ -1493,38 +1506,32 @@
 
             <div class="ul-grid">
                 <a href="https://www.instagram.com/p/DYzN377k1r6/?img_index=2&igsh=ZmUydnEybWdwdWJi" target="_blank" rel="noopener" class="ul-card">
-                    <span class="ul-instagram-badge">📷</span>
-                    <div class="ul-icon-wrapper">🍔</div>
+                    <div class="ul-icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ul-svg" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="9" y1="6" x2="15" y2="6"></line><line x1="9" y1="10" x2="15" y2="10"></line><line x1="9" y1="14" x2="12.5" y2="14"></line></svg></div>
                     <p class="ul-card-title">モバイルオーダー</p>
                     <p class="ul-card-subtitle">Instagram →</p>
                 </a>
                 <a href="https://www.instagram.com/p/DYzN377k1r6/?img_index=2&igsh=ZmUydnEybWdwdWJi" target="_blank" rel="noopener" class="ul-card">
-                    <span class="ul-instagram-badge">📷</span>
-                    <div class="ul-icon-wrapper">🗺️</div>
+                    <div class="ul-icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ul-svg" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
                     <p class="ul-card-title">園内MAP</p>
                     <p class="ul-card-subtitle">Instagram →</p>
                 </a>
                 <a href="https://www.instagram.com/p/DYuBVIjkuRO/?igsh=NTFxb3JhcWd2dngx" target="_blank" rel="noopener" class="ul-card">
-                    <span class="ul-instagram-badge">📷</span>
-                    <div class="ul-icon-wrapper">⭐</div>
+                    <div class="ul-icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ul-svg" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
                     <p class="ul-card-title">シーの情報まとめ</p>
                     <p class="ul-card-subtitle">Instagram →</p>
                 </a>
                 <a href="https://www.instagram.com/p/DXQHB-0k303/?img_index=5&igsh=OWZoNzlsYzh2ZXA3" target="_blank" rel="noopener" class="ul-card">
-                    <span class="ul-instagram-badge">📷</span>
-                    <div class="ul-icon-wrapper">☔</div>
+                    <div class="ul-icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ul-svg" aria-hidden="true"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path></svg></div>
                     <p class="ul-card-title">雨の日ディズニー</p>
                     <p class="ul-card-subtitle">Instagram →</p>
                 </a>
                 <a href="https://www.instagram.com/p/DWymyqzk_-R/?igsh=cmgxbW84dXJ0ZW42" target="_blank" rel="noopener" class="ul-card">
-                    <span class="ul-instagram-badge">📷</span>
-                    <div class="ul-icon-wrapper">🎂</div>
+                    <div class="ul-icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ul-svg" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="1"></rect><path d="M4 15c2 0 2 1.5 4 1.5S10 15 12 15s2 1.5 4 1.5 2-1.5 4-1.5"></path><line x1="12" y1="7" x2="12" y2="11"></line><circle cx="12" cy="5.5" r="1"></circle></svg></div>
                     <p class="ul-card-title">シー25周年メニュー</p>
                     <p class="ul-card-subtitle">Instagram →</p>
                 </a>
                 <a href="https://www.instagram.com/p/DZCzS67gcwC/?img_index=4&igsh=MWkwNXRuaGN3cTJjZQ==" target="_blank" rel="noopener" class="ul-card">
-                    <span class="ul-instagram-badge">📷</span>
-                    <div class="ul-icon-wrapper">🍡</div>
+                    <div class="ul-icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ul-svg" aria-hidden="true"><path d="M7 10a5 5 0 0 1 10 0"></path><line x1="6.5" y1="10" x2="17.5" y2="10"></line><path d="M8.5 10l3.5 9 3.5-9"></path></svg></div>
                     <p class="ul-card-title">シー食べ歩きフード</p>
                     <p class="ul-card-subtitle">Instagram →</p>
                 </a>
@@ -1545,31 +1552,40 @@
                     <img src="assets/room-alice.jpg" alt="不思議の国のアリス" loading="lazy">
                     <div class="room-content">
                         <h3 class="room-title">不思議の国のアリス</h3>
-                        <p class="room-names">ゆうか／ゆの／やえこ／みゆう</p>
+                        <p class="room-names">みづき／みおこ／あんり</p>
+                        <p class="room-sub">きすけ（みおなさんのお子様）<br>※当日はみおなさんのいるお部屋へ移動</p>
                     </div>
                 </div>
                 <div class="room-card">
-                    <img src="assets/room-beauty.jpg" alt="美女と野獣" loading="lazy">
+                    <img src="assets/room-beauty.jpg" alt="スタンダードルーム" loading="lazy">
                     <div class="room-content">
-                        <h3 class="room-title">美女と野獣</h3>
-                        <p class="room-names">みおな（子ども2名）／ゆきの（子ども1名）／える</p>
+                        <h3 class="room-title">スタンダード①</h3>
+                        <p class="room-names">あかね／りく／みおな（子：すい）／ふうか</p>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="assets/room-beauty.jpg" alt="スタンダードルーム" loading="lazy">
+                    <div class="room-content">
+                        <h3 class="room-title">スタンダード②</h3>
+                        <p class="room-names">ゆうか／ゆの／ななこ（子：えま）／もえこ</p>
                     </div>
                 </div>
                 <div class="room-card">
                     <img src="assets/room-tinkerbell.jpg" alt="ティンカーベル" loading="lazy">
                     <div class="room-content">
                         <h3 class="room-title">ティンカーベル</h3>
-                        <p class="room-names">ふるはる（子ども1名）／ななこ（子ども1名）／ともえ／もえこ</p>
+                        <p class="room-names">りお／ともえ／はるか／ふるはる（子：いおり）</p>
                     </div>
                 </div>
                 <div class="room-card">
-                    <img src="assets/room-standard.jpg" alt="通常部屋" loading="lazy">
+                    <img src="assets/room-standard.jpg" alt="美女と野獣" loading="lazy">
                     <div class="room-content">
-                        <h3 class="room-title">通常部屋</h3>
-                        <p class="room-names">① みづき／みおこ／あんり／ふうか　／　② あかね／りく／りお／りな</p>
+                        <h3 class="room-title">美女と野獣</h3>
+                        <p class="room-names">あゆみ（子：ゆうき）／りな／やえこ／みゆう</p>
                     </div>
                 </div>
             </div>
+            <p class="rooms-free">お部屋の行き来は自由です♡</p>
         </div>
     </section>
     
