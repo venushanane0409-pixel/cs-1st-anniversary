@@ -1275,28 +1275,36 @@
 
         .ig-embed-wrap {
             position: relative;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
             padding: var(--spacing-0382) 0 var(--spacing-1);
+            cursor: grab;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
             -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
             mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
         }
+
+        .ig-embed-wrap::-webkit-scrollbar { display: none; }
+
+        .ig-embed-wrap.is-dragging {
+            cursor: grabbing;
+            scroll-behavior: auto;
+        }
+
+        .ig-embed-wrap.is-dragging .ig-card { pointer-events: none; }
 
         .ig-marquee {
             display: flex;
             width: max-content;
             gap: var(--spacing-1);
-            animation: igScroll 42s linear infinite;
-            will-change: transform;
         }
 
-        .ig-embed-wrap:hover .ig-marquee,
-        .ig-embed-wrap:focus-within .ig-marquee {
-            animation-play-state: paused;
-        }
-
-        @keyframes igScroll {
-            from { transform: translateX(0); }
-            to   { transform: translateX(calc(-50% - (var(--spacing-1) / 2))); }
+        .ig-marquee img {
+            -webkit-user-drag: none;
+            user-select: none;
         }
 
         .ig-card {
@@ -1382,13 +1390,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .ig-marquee {
-                animation: none;
-                width: 100%;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                padding-bottom: var(--spacing-0618);
-            }
+            .ig-embed-wrap { scroll-snap-type: x proximity; }
             .ig-card { scroll-snap-align: start; }
         }
 
@@ -2016,6 +2018,86 @@
                 hid = true;
                 if (hint) hint.classList.add('is-hidden');
             }, { passive: true });
+        })();
+
+        // Instagram カルーセル: 自動スクロール + 指スワイプ / マウスドラッグで操作
+        (function () {
+            const wrap = document.querySelector('.ig-embed-wrap');
+            const track = wrap && wrap.querySelector('.ig-marquee');
+            if (!wrap || !track) return;
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // トラックは同じ5枚を2セット並べている。half = 1セット分の幅
+            let half = 0;
+            const measure = () => { half = track.scrollWidth / 2; };
+            measure();
+            window.addEventListener('resize', measure);
+            window.addEventListener('load', measure);
+
+            // 無限ループ: scrollLeft を [0, half) に収める
+            const normalize = () => {
+                if (half <= 0) return;
+                if (wrap.scrollLeft >= half) wrap.scrollLeft -= half;
+                else if (wrap.scrollLeft < 0) wrap.scrollLeft += half;
+            };
+            wrap.addEventListener('scroll', normalize, { passive: true });
+
+            // 自動送り（ユーザー操作中・ホバー中は止める）
+            const SPEED = 0.4; // px / frame
+            let hovering = false;
+            let focusHold = false;
+            let resumeAt = 0;
+            const bump = (ms) => { resumeAt = Date.now() + (ms || 1800); };
+
+            const tick = () => {
+                if (!reduce && !hovering && !focusHold && half > 0 && Date.now() >= resumeAt) {
+                    wrap.scrollLeft += SPEED;
+                    if (wrap.scrollLeft >= half) wrap.scrollLeft -= half;
+                }
+                requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+
+            // マウスホバー / キーボードフォーカスで停止
+            wrap.addEventListener('mouseenter', () => { hovering = true; });
+            wrap.addEventListener('mouseleave', () => { hovering = false; });
+            wrap.addEventListener('focusin', () => { focusHold = true; });
+            wrap.addEventListener('focusout', () => { focusHold = false; });
+
+            // 操作したら少しの間だけ自動送りを止める
+            wrap.addEventListener('wheel', () => bump(), { passive: true });
+            wrap.addEventListener('touchstart', () => bump(99999), { passive: true });
+            wrap.addEventListener('touchend', () => bump(1800), { passive: true });
+
+            // マウスドラッグ（指スワイプはネイティブの慣性スクロールに任せる）
+            let dragging = false, startX = 0, startLeft = 0, moved = 0;
+            wrap.addEventListener('pointerdown', (e) => {
+                if (e.pointerType !== 'mouse') return;
+                dragging = true; moved = 0;
+                startX = e.clientX; startLeft = wrap.scrollLeft;
+                bump(99999);
+                try { wrap.setPointerCapture(e.pointerId); } catch (_) {}
+                wrap.classList.add('is-dragging');
+            });
+            wrap.addEventListener('pointermove', (e) => {
+                if (!dragging) return;
+                const dx = e.clientX - startX;
+                moved = Math.max(moved, Math.abs(dx));
+                wrap.scrollLeft = startLeft - dx;
+            });
+            const endDrag = () => {
+                if (!dragging) return;
+                dragging = false;
+                wrap.classList.remove('is-dragging');
+                bump(1500);
+                // ドラッグ操作直後の誤クリック（リンク遷移）を1回だけ抑制
+                if (moved > 6) {
+                    const block = (ev) => { ev.preventDefault(); ev.stopPropagation(); };
+                    wrap.addEventListener('click', block, { capture: true, once: true });
+                }
+            };
+            wrap.addEventListener('pointerup', endDrag);
+            wrap.addEventListener('pointercancel', endDrag);
         })();
 
         // 装飾（雪・きらめき）は reduced-motion 設定時は生成しない
